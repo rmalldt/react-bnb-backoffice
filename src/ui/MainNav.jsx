@@ -8,7 +8,7 @@ import {
   HiOutlineUserGroup,
 } from 'react-icons/hi2';
 
-const NavList = styled.ul`
+const StyledNavList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -56,7 +56,7 @@ const StyledNavLink = styled(NavLink)`
 function MainNav() {
   return (
     <nav>
-      <NavList>
+      <StyledNavList>
         <li>
           <StyledNavLink to="/dashboard">
             <HiOutlineHome /> Home
@@ -86,7 +86,7 @@ function MainNav() {
             Settings
           </StyledNavLink>
         </li>
-      </NavList>
+      </StyledNavList>
     </nav>
   );
 }

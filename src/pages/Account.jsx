@@ -1,20 +1,20 @@
-import Heading from "../ui/Heading";
-import Row from "../ui/Row";
+import StyledHeading from '../ui/StyledHeading';
+import StyledRow from '../ui/StyledRow';
 
 function Account() {
   return (
     <>
-      <Heading as="h1">Update your account</Heading>
+      <StyledHeading as="h1">Update your account</StyledHeading>
 
-      <Row>
-        <Heading as="h3">Update user data</Heading>
+      <StyledRow>
+        <StyledHeading as="h3">Update user data</StyledHeading>
         <p>Update user data form</p>
-      </Row>
+      </StyledRow>
 
-      <Row>
-        <Heading as="h3">Update password</Heading>
+      <StyledRow>
+        <StyledHeading as="h3">Update password</StyledHeading>
         <p>Update user password form</p>
-      </Row>
+      </StyledRow>
     </>
   );
 }

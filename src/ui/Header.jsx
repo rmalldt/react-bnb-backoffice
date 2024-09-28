@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Heading from './Heading';
+import StyledHeading from './StyledHeading';
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -12,7 +12,7 @@ const StyledHeader = styled.header`
 function Header() {
   return (
     <StyledHeader>
-      <Heading as="h1">The Office</Heading>
+      <StyledHeading as="h1">The Office</StyledHeading>
     </StyledHeader>
   );
 }

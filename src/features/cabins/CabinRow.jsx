@@ -9,7 +9,7 @@ CabinRow.propTypes = {
   cabin: PropTypes.object,
 };
 
-const TableRow = styled.div`
+const StyledTableRow = styled.div`
   display: grid;
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
   column-gap: 2.4rem;
@@ -21,7 +21,7 @@ const TableRow = styled.div`
   }
 `;
 
-const Img = styled.img`
+const StyledImg = styled.img`
   display: block;
   width: 6.4rem;
   aspect-ratio: 3 / 2;
@@ -30,19 +30,19 @@ const Img = styled.img`
   transform: scale(1.5) translateX(-7px);
 `;
 
-const Cabin = styled.div`
+const StyledCabin = styled.div`
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--color-grey-600);
   font-family: 'Sono';
 `;
 
-const Price = styled.div`
+const StyledPrice = styled.div`
   font-family: 'Sono';
   font-weight: 600;
 `;
 
-const Discount = styled.div`
+const StyledDiscount = styled.div`
   font-family: 'Sono';
   font-weight: 500;
   color: var(--color-green-700);
@@ -76,16 +76,16 @@ function CabinRow({ cabin }) {
   });
 
   return (
-    <TableRow role="row">
-      <Img src={image} />
-      <Cabin>{name}</Cabin>
+    <StyledTableRow role="row">
+      <StyledImg src={image} />
+      <StyledCabin>{name}</StyledCabin>
       <div>Fits upto {max_capacity}</div>
-      <Price>{formatCurrency(regular_price)}</Price>
-      <Discount>{formatCurrency(discount)}</Discount>
+      <StyledPrice>{formatCurrency(regular_price)}</StyledPrice>
+      <StyledDiscount>{formatCurrency(discount)}</StyledDiscount>
       <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
         Delete
       </button>
-    </TableRow>
+    </StyledTableRow>
   );
 }
 

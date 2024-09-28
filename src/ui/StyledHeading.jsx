@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const Heading = styled.h1`
+const StyledHeading = styled.h1`
   line-height: 1.4;
   ${props =>
     props.as === 'h1' &&
@@ -24,4 +24,4 @@ const Heading = styled.h1`
     `};
 `;
 
-export default Heading;
+export default StyledHeading;

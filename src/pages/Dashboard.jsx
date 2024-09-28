@@ -1,11 +1,11 @@
-import Heading from '../ui/Heading';
-import Row from '../ui/Row';
+import StyledHeading from '../ui/StyledHeading';
+import StyledRow from '../ui/StyledRow';
 
 function Dashboard() {
   return (
-    <Row type="horizontal">
-      <Heading as="h1">Dashboard</Heading>
-    </Row>
+    <StyledRow type="horizontal">
+      <StyledHeading as="h1">Dashboard</StyledHeading>
+    </StyledRow>
   );
 }
 

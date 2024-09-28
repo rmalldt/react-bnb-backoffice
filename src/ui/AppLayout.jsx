@@ -18,7 +18,7 @@ const StyledMain = styled.main`
   overflow: scroll;
 `;
 
-const StyleContainer = styled.div`
+const StyledContainer = styled.div`
   max-width: 120rem;
   margin: 0 auto;
   display: flex;
@@ -32,9 +32,9 @@ function AppLayout() {
       <Header />
       <Sidebar />
       <StyledMain>
-        <StyleContainer>
+        <StyledContainer>
           <Outlet />
-        </StyleContainer>
+        </StyledContainer>
       </StyledMain>
     </StyledAppLayout>
   );

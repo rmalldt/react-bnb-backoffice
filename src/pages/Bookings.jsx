@@ -1,12 +1,12 @@
-import Heading from "../ui/Heading";
-import Row from "../ui/Row";
+import StyledHeading from '../ui/StyledHeading';
+import StyledRow from '../ui/StyledRow';
 
 function Bookings() {
   return (
-    <Row type="horizontal">
-      <Heading as="h1">All bookings</Heading>
+    <StyledRow type="horizontal">
+      <StyledHeading as="h1">All bookings</StyledHeading>
       <p>TEST</p>
-    </Row>
+    </StyledRow>
   );
 }
 

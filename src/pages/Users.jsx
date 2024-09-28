@@ -1,7 +1,7 @@
-import Heading from "../ui/Heading";
+import StyledHeading from '../ui/StyledHeading';
 
 function NewUsers() {
-  return <Heading as="h1">Create a new user</Heading>;
+  return <StyledHeading as="h1">Create a new user</StyledHeading>;
 }
 
 export default NewUsers;
