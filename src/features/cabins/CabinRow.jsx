@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { formatCurrency } from '../../utils/helpers';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteCabin } from '../../services/apiCabins';
+import toast from 'react-hot-toast';
 
 CabinRow.propTypes = {
   cabin: PropTypes.object,
@@ -46,17 +49,42 @@ const Discount = styled.div`
 `;
 
 function CabinRow({ cabin }) {
-  const { name, max_capacity, regular_price, discount, description, image } =
-    cabin;
+  const queryClient = useQueryClient();
+
+  const {
+    id: cabinId,
+    name,
+    max_capacity,
+    regular_price,
+    discount,
+    image,
+  } = cabin;
+
+  const { isLoading: isDeleting, mutate } = useMutation({
+    // Function reference to API call
+    mutationFn: deleteCabin,
+
+    onSuccess: () => {
+      toast.success('Cabin successfully deleted');
+      // On success invalidate the cache and make the fresh fetch to display latest state
+      queryClient.invalidateQueries({
+        queryKey: ['cabins'],
+      });
+    },
+
+    onError: err => toast.error(err.message),
+  });
 
   return (
-    <TableRow>
+    <TableRow role="row">
       <Img src={image} />
       <Cabin>{name}</Cabin>
       <div>Fits upto {max_capacity}</div>
       <Price>{formatCurrency(regular_price)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
-      <button>Delete</button>
+      <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
+        Delete
+      </button>
     </TableRow>
   );
 }

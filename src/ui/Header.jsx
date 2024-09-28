@@ -12,8 +12,7 @@ const StyledHeader = styled.header`
 function Header() {
   return (
     <StyledHeader>
-      <Heading as="h1">The title</Heading>
-      <Heading as="h2">The sub-title</Heading>
+      <Heading as="h1">The Office</Heading>
     </StyledHeader>
   );
 }
