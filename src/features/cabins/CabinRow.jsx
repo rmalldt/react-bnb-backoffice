@@ -1,11 +1,11 @@
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { formatCurrency } from '../../utils/helpers';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteCabin } from '../../services/apiCabins';
-import toast from 'react-hot-toast';
+import styled from 'styled-components';
 import { useState } from 'react';
+import { formatCurrency } from '../../utils/helpers';
 import CreateCabinForm from './CreateCabinForm';
+import { useDeleteCabin } from './useDeleteCabin';
+import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
+import { useCreateCabin } from './useCreateCabin';
 
 CabinRow.propTypes = {
   cabin: PropTypes.object,
@@ -52,7 +52,8 @@ const StyledDiscount = styled.div`
 
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false);
-  const queryClient = useQueryClient();
+  const { deleteCabin, isDeleting } = useDeleteCabin();
+  const { createCabin, isCreating } = useCreateCabin();
 
   const {
     id: cabinId,
@@ -60,24 +61,22 @@ function CabinRow({ cabin }) {
     maxCapacity,
     regularPrice,
     discount,
+    description,
     image,
   } = cabin;
 
-  const { isLoading: isDeleting, mutate } = useMutation({
-    // Function reference to API call
-    mutationFn: deleteCabin,
+  function handleDuplicate() {
+    createCabin({
+      name: `Copy of ${name}`,
+      maxCapacity,
+      regularPrice,
+      discount,
+      description,
+      image,
+    });
+  }
 
-    onSuccess: () => {
-      toast.success('Cabin successfully deleted');
-      // On success invalidate the cache and make the fresh fetch to display latest state
-      queryClient.invalidateQueries({
-        queryKey: ['cabins'],
-      });
-    },
-
-    onError: err => toast.error(err.message),
-  });
-
+  const isWorking = isDeleting || isCreating;
   return (
     <>
       <StyledTableRow role="row">
@@ -85,11 +84,20 @@ function CabinRow({ cabin }) {
         <StyledCabin>{name}</StyledCabin>
         <div>Fits upto {maxCapacity}</div>
         <StyledPrice>{formatCurrency(regularPrice)}</StyledPrice>
-        <StyledDiscount>{formatCurrency(discount)}</StyledDiscount>
+        {discount ? (
+          <StyledDiscount>{formatCurrency(discount)}</StyledDiscount>
+        ) : (
+          <span>&mdash;</span>
+        )}
         <div>
-          <button onClick={() => setShowForm(show => !show)}>Edit</button>
-          <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
-            Delete
+          <button onClick={handleDuplicate} disabled={isWorking}>
+            <HiSquare2Stack />
+          </button>
+          <button onClick={() => setShowForm(show => !show)}>
+            <HiPencil />
+          </button>
+          <button onClick={() => deleteCabin(cabinId)} disabled={isWorking}>
+            <HiTrash />
           </button>
         </div>
       </StyledTableRow>
