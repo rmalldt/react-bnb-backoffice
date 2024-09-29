@@ -11,9 +11,10 @@ import { useEditCabin } from './useEditCabin';
 
 CreateCabinForm.propTypes = {
   cabinToEdit: PropTypes.object,
+  onCloseModal: PropTypes.func,
 };
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
 
@@ -32,9 +33,26 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     if (isEditSession)
       editCabin(
         { cabinData: { ...data, image }, id: editId },
-        { onSuccess: () => reset() }
+        {
+          onSuccess: () => {
+            reset();
+            // on finish editing close the Modal if the function exist
+            // because the form may be used outside the model which
+            // may not provide the onCloseModal functon
+            onCloseModal?.();
+          },
+        }
       );
-    else createCabin({ ...data, image }, { onSuccess: () => reset() });
+    else
+      createCabin(
+        { ...data, image },
+        {
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
+        }
+      );
   }
 
   function onError(errors) {
@@ -42,7 +60,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit, onError)}>
+    <StyledForm
+      onSubmit={handleSubmit(onSubmit, onError)}
+      type={onCloseModal ? 'modal' : 'regular'}
+    >
       <FormRow label="Cabin name" error={errors?.name?.message}>
         <StyledInput
           type="text"
@@ -119,8 +140,11 @@ function CreateCabinForm({ cabinToEdit = {} }) {
       </FormRow>
 
       <FormRow>
-        {/* type is an HTML attribute! */}
-        <StyledButton variation="secondary" type="reset">
+        <StyledButton
+          variation="secondary"
+          type="reset"
+          onClick={() => onCloseModal?.()}
+        >
           Cancel
         </StyledButton>
         <StyledButton disabled={isWorking}>

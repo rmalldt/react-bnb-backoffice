@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 const StyledForm = styled.form`
   ${props =>
-    props.type !== 'modal' &&
+    props.type == 'regular' &&
     css`
       padding: 2.4rem 4rem;
 
@@ -21,5 +21,9 @@ const StyledForm = styled.form`
   overflow: hidden;
   font-size: 1.4rem;
 `;
+
+StyledForm.defaultProps = {
+  type: 'regular',
+};
 
 export default StyledForm;
