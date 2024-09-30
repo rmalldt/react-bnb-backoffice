@@ -53,13 +53,13 @@ const StyledButton = styled.button`
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
 
-  ${props => sizes[props.size]}
-  ${props => variations[props.variation]}
+  ${props => sizes[props.$size]}
+  ${props => variations[props.$variation]}
 `;
 
 StyledButton.defaultProps = {
-  size: 'medium',
-  variation: 'primary',
+  $size: 'medium',
+  $variation: 'primary',
 };
 
 export default StyledButton;

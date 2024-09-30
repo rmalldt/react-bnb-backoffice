@@ -1,15 +1,9 @@
 import PropTypes from 'prop-types';
-import {
-  cloneElement,
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { cloneElement, createContext, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 import styled from 'styled-components';
+import { useOutsideClick } from '../hooks/useOutsideClick';
 
 Window.propTypes = {
   children: PropTypes.any,
@@ -76,7 +70,6 @@ const ModalContext = createContext();
 // 2. Parent component
 function Modal({ children }) {
   const [openName, setOpenName] = useState('');
-
   const close = () => setOpenName('');
   const open = setOpenName;
 
@@ -102,21 +95,7 @@ function Open({ children, opens: windowName }) {
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
 
-  const ref = useRef();
-
-  useEffect(() => {
-    const handleClick = e => {
-      if (ref.current && !ref.current.contains(e.target)) {
-        close();
-      }
-    };
-    // Handle event in the capturing phase.
-    // The model window is rendered on portal (direct child of body)
-    // If the event is handled on bubbling phase the model window opens but closes immediately.
-    document.addEventListener('click', handleClick, true);
-
-    return () => document.removeEventListener('click', handleClick);
-  }, [close]);
+  const ref = useOutsideClick(close);
 
   if (name !== openName) return null;
 
