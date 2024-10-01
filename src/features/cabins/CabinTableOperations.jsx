@@ -1,10 +1,10 @@
 import Filter from '../../ui/Filter';
 import SortBy from '../../ui/SortBy';
-import StyledTableOperations from '../../ui/StyledTableOperations';
+import * as S from '../../styles';
 
 function CabinTableOperations() {
   return (
-    <StyledTableOperations>
+    <S.OperationsContainer>
       <Filter
         filterField="discount"
         options={[
@@ -23,7 +23,7 @@ function CabinTableOperations() {
           { label: 'Sort by capacity (high-first)', value: 'maxCapacity-desc' },
         ]}
       />
-    </StyledTableOperations>
+    </S.OperationsContainer>
   );
 }
 

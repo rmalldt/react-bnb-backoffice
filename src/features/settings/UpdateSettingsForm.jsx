@@ -1,8 +1,6 @@
-import StyledForm from '../../ui/StyledForm';
+import * as S from '../../styles';
 import FormRow from '../../ui/FormRow';
-import StyledInput from '../../ui/StyledInput';
 import { useSettings } from './useSettings';
-import StyledSpinner from '../../ui/StyledSpinner';
 import { useUpdateSettings } from './useUpdateSettings';
 
 function UpdateSettingsForm() {
@@ -25,12 +23,12 @@ function UpdateSettingsForm() {
     updateSetting({ [field]: value });
   }
 
-  if (isLoading) return <StyledSpinner />;
+  if (isLoading) return <S.Spinner />;
 
   return (
-    <StyledForm>
+    <S.Form>
       <FormRow label="Minimum nights/booking">
-        <StyledInput
+        <S.Input
           type="number"
           id="min-nights"
           defaultValue={minBookingLength}
@@ -39,7 +37,7 @@ function UpdateSettingsForm() {
         />
       </FormRow>
       <FormRow label="Maximum nights/booking">
-        <StyledInput
+        <S.Input
           type="number"
           id="max-nights"
           disabled={isUpdating}
@@ -48,7 +46,7 @@ function UpdateSettingsForm() {
         />
       </FormRow>
       <FormRow label="Maximum guests/booking">
-        <StyledInput
+        <S.Input
           type="number"
           id="max-guests"
           disabled={isUpdating}
@@ -57,7 +55,7 @@ function UpdateSettingsForm() {
         />
       </FormRow>
       <FormRow label="Breakfast price">
-        <StyledInput
+        <S.Input
           type="number"
           id="breakfast-price"
           disabled={isUpdating}
@@ -65,7 +63,7 @@ function UpdateSettingsForm() {
           onBlur={e => handleUpdate(e, 'breakfastPrice')}
         />
       </FormRow>
-    </StyledForm>
+    </S.Form>
   );
 }
 

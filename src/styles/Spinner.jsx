@@ -6,7 +6,7 @@ const rotate = keyframes`
   }
 `;
 
-const StyledSpinner = styled.div`
+const Spinner = styled.div`
   margin: 4.8rem auto;
   width: 6.4rem;
   aspect-ratio: 1;
@@ -18,4 +18,4 @@ const StyledSpinner = styled.div`
   animation: ${rotate} 1.5s infinite linear;
 `;
 
-export default StyledSpinner;
+export default Spinner;

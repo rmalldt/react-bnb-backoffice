@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import StyledHeading from '../ui/StyledHeading';
+import * as S from '../styles';
 
 const StyledPageNotFound = styled.main`
   height: 100vh;
@@ -32,9 +32,9 @@ function PageNotFound() {
   return (
     <StyledPageNotFound>
       <Box>
-        <StyledHeading as="h1">
+        <S.Heading as="h1">
           The page you are looking for could not be found 😢
-        </StyledHeading>
+        </S.Heading>
         <button onClick={() => {}} size="large">
           &larr; Go back
         </button>

@@ -1,13 +1,9 @@
 import PropTypes from 'prop-types';
-import StyledInput from '../../ui/StyledInput';
-import StyledForm from '../../ui/StyledForm';
-import StyledButton from '../../ui/StyledButton';
-import StyledFileInput from '../../ui/StyledFileInput';
-import StyledTextarea from '../../ui/StyledTextarea';
 import { useForm } from 'react-hook-form';
-import FormRow from '../../ui/FormRow';
 import { useCreateCabin } from './useCreateCabin';
 import { useEditCabin } from './useEditCabin';
+import * as S from '../../styles';
+import FormRow from '../../ui/FormRow';
 
 CreateCabinForm.propTypes = {
   cabinToEdit: PropTypes.object,
@@ -28,7 +24,6 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { errors } = formState;
 
   function onSubmit(data) {
-    console.log(data);
     const image = typeof data.image === 'string' ? data.image : data.image[0];
     if (isEditSession)
       editCabin(
@@ -38,7 +33,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
             reset();
             // on finish editing close the Modal if the function exist
             // because the form may be used outside the model which
-            // may not provide the onCloseModal functon
+            // may not provide the onCloseModal function
             onCloseModal?.();
           },
         }
@@ -60,12 +55,12 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   }
 
   return (
-    <StyledForm
+    <S.Form
       onSubmit={handleSubmit(onSubmit, onError)}
       type={onCloseModal ? 'modal' : 'regular'}
     >
       <FormRow label="Cabin name" error={errors?.name?.message}>
-        <StyledInput
+        <S.Input
           type="text"
           id="name"
           disabled={isWorking}
@@ -76,7 +71,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
       </FormRow>
 
       <FormRow label="Maximum capacity" error={errors?.maxCapacity?.message}>
-        <StyledInput
+        <S.Input
           type="number"
           id="max_capacity"
           disabled={isWorking}
@@ -91,7 +86,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
       </FormRow>
 
       <FormRow label="Regular price" error={errors?.regularPrice?.message}>
-        <StyledInput
+        <S.Input
           type="number"
           id="regularPrice"
           disabled={isWorking}
@@ -102,7 +97,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
       </FormRow>
 
       <FormRow label="Discount" error={errors?.discount?.message}>
-        <StyledInput
+        <S.Input
           type="number"
           id="discount"
           disabled={isWorking}
@@ -119,7 +114,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
         label="Description for website"
         error={errors?.description?.message}
       >
-        <StyledTextarea
+        <S.TextArea
           type="text"
           id="description"
           disabled={isWorking}
@@ -130,7 +125,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
       </FormRow>
 
       <FormRow label="Cabin photo" error={errors?.image?.message}>
-        <StyledFileInput
+        <S.FileInputButton
           id="image"
           accept="image/*"
           {...register('image', {
@@ -140,18 +135,18 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
       </FormRow>
 
       <FormRow>
-        <StyledButton
+        <S.Button
           $variation="secondary"
           type="reset"
           onClick={() => onCloseModal?.()}
         >
           Cancel
-        </StyledButton>
-        <StyledButton disabled={isWorking}>
+        </S.Button>
+        <S.Button disabled={isWorking}>
           {isEditSession ? 'Edit cabin' : 'Add cabin'}
-        </StyledButton>
+        </S.Button>
       </FormRow>
-    </StyledForm>
+    </S.Form>
   );
 }
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledFileInput = styled.input.attrs({ type: 'file' })`
+const FileInputButton = styled.input.attrs({ type: 'file' })`
   font-size: 1.4rem;
   border-radius: var(--border-radius-sm);
 
@@ -22,4 +22,4 @@ const StyledFileInput = styled.input.attrs({ type: 'file' })`
   }
 `;
 
-export default StyledFileInput;
+export default FileInputButton;

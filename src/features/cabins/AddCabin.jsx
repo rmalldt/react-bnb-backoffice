@@ -1,4 +1,4 @@
-import StyledButton from '../../ui/StyledButton';
+import * as S from '../../styles';
 import Modal from '../../ui/Modal';
 import CreateCabinForm from './CreateCabinForm';
 
@@ -7,7 +7,7 @@ function AddCabin() {
     <div>
       <Modal>
         <Modal.Open opens="cabin-form">
-          <StyledButton>Add new cabin</StyledButton>
+          <S.Button>Add new cabin</S.Button>
         </Modal.Open>
         <Modal.Window name="cabin-form">
           <CreateCabinForm />

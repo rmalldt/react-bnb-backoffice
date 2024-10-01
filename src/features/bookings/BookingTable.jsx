@@ -2,13 +2,13 @@ import { useBookings } from './useBookings';
 import BookingRow from './BookingRow';
 import Table from '../../ui/Table';
 import Menus from '../../ui/Menus';
-import StyledSpinner from '../../ui/StyledSpinner';
+import * as S from '../../styles';
 import Empty from '../../ui/Empty';
 
 function BookingTable() {
   const { bookings, isLoading } = useBookings();
 
-  if (isLoading) return <StyledSpinner />;
+  if (isLoading) return <S.Spinner />;
 
   if (!bookings.length) return <Empty resourceName="bookings" />;
 

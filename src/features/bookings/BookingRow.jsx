@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { format, isToday } from 'date-fns';
 import PropTypes from 'prop-types';
 
-import StyledTag from '../../ui/StyledTag';
+import * as S from '../../styles';
 import Table from '../../ui/Table';
 
 import { formatCurrency } from '../../utils/helpers';
@@ -81,9 +81,7 @@ function BookingRow({ booking }) {
         </span>
       </StyledStacked>
 
-      <StyledTag type={statusToTagName[status]}>
-        {status.replace('-', ' ')}
-      </StyledTag>
+      <S.Tag type={statusToTagName[status]}>{status.replace('-', ' ')}</S.Tag>
 
       <StyledAmount>{formatCurrency(totalPrice)}</StyledAmount>
     </Table.Row>

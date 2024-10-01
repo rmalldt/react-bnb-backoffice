@@ -1,13 +1,12 @@
-import StyledHeading from '../ui/StyledHeading';
-import StyledRow from '../ui/StyledRow';
+import * as S from '../styles';
 import BookingTable from '../features/bookings/BookingTable';
 
 function Bookings() {
   return (
     <>
-      <StyledRow type="horizontal">
-        <StyledHeading as="h1">All bookings</StyledHeading>
-      </StyledRow>
+      <S.Row type="horizontal">
+        <S.Heading as="h1">All bookings</S.Heading>
+      </S.Row>
       <BookingTable />
     </>
   );

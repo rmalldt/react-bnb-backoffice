@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import StyledButton from './StyledButton';
-import StyledHeading from './StyledHeading';
+import * as S from '../styles';
 
 ConfirmDelete.propTypes = {
   resourceName: PropTypes.string,
@@ -10,51 +8,28 @@ ConfirmDelete.propTypes = {
   onCloseModal: PropTypes.func,
 };
 
-const StyledConfirmDelete = styled.div`
-  width: 40rem;
-
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  & p {
-    color: var(--color-grey-500);
-    margin-bottom: 1.2rem;
-  }
-
-  & div {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1.2rem;
-  }
-`;
-
 function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
   return (
-    <StyledConfirmDelete>
-      <StyledHeading as="h3">Delete {resourceName}</StyledHeading>
+    <S.ConfirmationContainer>
+      <S.Heading as="h3">Delete {resourceName}</S.Heading>
       <p>
         Are you sure you want to delete this {resourceName} permanently? This
         action cannot be undone.
       </p>
 
       <div>
-        <StyledButton
+        <S.Button
           $variation="secondary"
           onClick={onCloseModal}
           disabled={disabled}
         >
           Cancel
-        </StyledButton>
-        <StyledButton
-          $variation="danger"
-          disabled={disabled}
-          onClick={onConfirm}
-        >
+        </S.Button>
+        <S.Button $variation="danger" disabled={disabled} onClick={onConfirm}>
           Delete
-        </StyledButton>
+        </S.Button>
       </div>
-    </StyledConfirmDelete>
+    </S.ConfirmationContainer>
   );
 }
 

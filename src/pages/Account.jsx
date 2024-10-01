@@ -1,20 +1,19 @@
-import StyledHeading from '../ui/StyledHeading';
-import StyledRow from '../ui/StyledRow';
+import * as S from '../styles';
 
 function Account() {
   return (
     <>
-      <StyledHeading as="h1">Update your account</StyledHeading>
+      <S.Heading as="h1">Update your account</S.Heading>
 
-      <StyledRow>
-        <StyledHeading as="h3">Update user data</StyledHeading>
+      <S.Row>
+        <S.Heading as="h3">Update user data</S.Heading>
         <p>Update user data form</p>
-      </StyledRow>
+      </S.Row>
 
-      <StyledRow>
-        <StyledHeading as="h3">Update password</StyledHeading>
+      <S.Row>
+        <S.Heading as="h3">Update password</S.Heading>
         <p>Update user password form</p>
-      </StyledRow>
+      </S.Row>
     </>
   );
 }

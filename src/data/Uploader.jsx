@@ -1,19 +1,11 @@
 import { useState } from 'react';
 import { isFuture, isPast, isToday } from 'date-fns';
 import supabase from '../services/supabase';
-import StyledButton from '../ui/StyledButton';
+import Button from '../styles/Button';
 import { subtractDates } from '../utils/helpers';
-
 import { bookings } from './data-bookings';
 import { cabins } from './data-cabins';
 import { guests } from './data-guests';
-
-// const originalSettings = {
-//   minBookingLength: 3,
-//   maxBookingLength: 30,
-//   maxGuestsPerBooking: 10,
-//   breakfastPrice: 15,
-// };
 
 // Postgresql array indexing starts with 1
 async function deleteGuests() {
@@ -41,30 +33,36 @@ async function createCabins() {
   if (error) console.log(error.message);
 }
 
+/**
+ * Bookings has guestId and cabinId as FKs.
+ * On uploading sample data each time, the PK's are auto-generated.
+ * So it will be different Cabins and Guests data on each upload.
+ * Therefore, first, fetch guestIds and cabinIds from DB and then replace
+ * the IDs in the sample booking data with the actual Ids from the DB.
+ */
 async function createBookings() {
-  // Bookings need a guestId and a cabinId. We can't tell Supabase IDs for each object, it will calculate them on its own.
-  // So it might be different for different people, especially after multiple uploads. Therefore, we need to first get all
-  // guestIds and cabinIds, and then replace the original IDs in the booking data with the actual ones from the DB.
+  // Fetch guests id from DB
   const { data: guestsIds } = await supabase
     .from('guests')
     .select('id')
     .order('id');
   const allGuestIds = guestsIds.map(guest => guest.id);
 
+  // Fetch cabins id from DB
   const { data: cabinsIds } = await supabase
     .from('cabins')
     .select('id')
     .order('id');
   const allCabinIds = cabinsIds.map(cabin => cabin.id);
 
+  // Prepare sample bookings data
   const finalBookings = bookings.map(booking => {
-    // Here relying on the order of cabins, as they don't have and ID yet
     const cabin = cabins.at(booking.cabinId - 1);
     const numNights = subtractDates(booking.endDate, booking.startDate);
     const cabinPrice = numNights * (cabin.regularPrice - cabin.discount);
     const extrasPrice = booking.hasBreakfast
       ? numNights * 15 * booking.numGuests
-      : 0; // hardcoded breakfast price
+      : 0;
     const totalPrice = cabinPrice + extrasPrice;
 
     let status;
@@ -92,14 +90,12 @@ async function createBookings() {
       cabinPrice,
       extrasPrice,
       totalPrice,
-      guestId: allGuestIds.at(booking.guestId - 1),
-      cabinId: allCabinIds.at(booking.cabinId - 1),
+      guestId: allGuestIds.at(booking.guestId - 1), // replace sample ids with actual once
+      cabinId: allCabinIds.at(booking.cabinId - 1), // replace sample ids with actual once
       status,
     };
   });
-
   console.log(finalBookings);
-
   const { error } = await supabase.from('bookings').insert(finalBookings);
   if (error) console.log(error.message);
 }
@@ -109,12 +105,12 @@ function Uploader() {
 
   async function uploadAll() {
     setIsLoading(true);
-    // Bookings need to be deleted FIRST
+    // Delete bookings first (contains FK from guests and cabins)
     await deleteBookings();
     await deleteGuests();
     await deleteCabins();
 
-    // Bookings need to be created LAST
+    // Create bookings at last (contains FK from guests and cabins)
     await createGuests();
     await createCabins();
     await createBookings();
@@ -143,14 +139,12 @@ function Uploader() {
       }}
     >
       <h3>SAMPLE DATA</h3>
-
-      <StyledButton onClick={uploadAll} disabled={isLoading}>
+      <Button onClick={uploadAll} disabled={isLoading}>
         Upload ALL
-      </StyledButton>
-
-      <StyledButton onClick={uploadBookings} disabled={isLoading}>
+      </Button>
+      <Button onClick={uploadBookings} disabled={isLoading}>
         Upload bookings ONLY
-      </StyledButton>
+      </Button>
     </div>
   );
 }

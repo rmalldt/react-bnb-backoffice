@@ -1,13 +1,12 @@
 import UpdateSettingsForm from '../features/settings/UpdateSettingsForm';
-import StyledHeading from '../ui/StyledHeading';
-import StyledRow from '../ui/StyledRow';
+import * as S from '../styles';
 
 function Settings() {
   return (
-    <StyledRow>
-      <StyledHeading as="h1">Update hotel settings</StyledHeading>
+    <S.Row>
+      <S.Heading as="h1">Update hotel settings</S.Heading>
       <UpdateSettingsForm />
-    </StyledRow>
+    </S.Row>
   );
 }
 

@@ -1,5 +1,6 @@
 import { add } from 'date-fns';
 
+// ISO string: 2024-10-01T18:41:51.408
 function fromToday(numDays, withTime = false) {
   const date = add(new Date(), { days: numDays });
   if (!withTime) date.setUTCHours(0, 0, 0, 0);
@@ -9,7 +10,7 @@ function fromToday(numDays, withTime = false) {
 export const bookings = [
   // CABIN 001
   {
-    created_at: fromToday(-20, true),
+    createdAt: fromToday(-20, true),
     startDate: fromToday(0),
     endDate: fromToday(7),
     cabinId: 1,
@@ -21,7 +22,7 @@ export const bookings = [
     numGuests: 1,
   },
   {
-    created_at: fromToday(-33, true),
+    createdAt: fromToday(-33, true),
     startDate: fromToday(-23),
     endDate: fromToday(-13),
     cabinId: 1,
@@ -32,7 +33,7 @@ export const bookings = [
     numGuests: 2,
   },
   {
-    created_at: fromToday(-27, true),
+    createdAt: fromToday(-27, true),
     startDate: fromToday(12),
     endDate: fromToday(18),
     cabinId: 1,
@@ -45,7 +46,7 @@ export const bookings = [
 
   // CABIN 002
   {
-    created_at: fromToday(-45, true),
+    createdAt: fromToday(-45, true),
     startDate: fromToday(-45),
     endDate: fromToday(-29),
     cabinId: 2,
@@ -56,7 +57,7 @@ export const bookings = [
     numGuests: 2,
   },
   {
-    created_at: fromToday(-2, true),
+    createdAt: fromToday(-2, true),
     startDate: fromToday(15),
     endDate: fromToday(18),
     cabinId: 2,
@@ -67,7 +68,7 @@ export const bookings = [
     numGuests: 2,
   },
   {
-    created_at: fromToday(-5, true),
+    createdAt: fromToday(-5, true),
     startDate: fromToday(33),
     endDate: fromToday(48),
     cabinId: 2,
@@ -80,7 +81,7 @@ export const bookings = [
 
   // CABIN 003
   {
-    created_at: fromToday(-65, true),
+    createdAt: fromToday(-65, true),
     startDate: fromToday(-25),
     endDate: fromToday(-20),
     cabinId: 3,
@@ -91,7 +92,7 @@ export const bookings = [
     numGuests: 4,
   },
   {
-    created_at: fromToday(-2, true),
+    createdAt: fromToday(-2, true),
     startDate: fromToday(-2),
     endDate: fromToday(0),
     cabinId: 3,
@@ -102,7 +103,7 @@ export const bookings = [
     numGuests: 3,
   },
   {
-    created_at: fromToday(-14, true),
+    createdAt: fromToday(-14, true),
     startDate: fromToday(-14),
     endDate: fromToday(-11),
     cabinId: 3,
@@ -115,7 +116,7 @@ export const bookings = [
 
   // CABIN 004
   {
-    created_at: fromToday(-30, true),
+    createdAt: fromToday(-30, true),
     startDate: fromToday(-4),
     endDate: fromToday(8),
     cabinId: 4,
@@ -126,7 +127,7 @@ export const bookings = [
     numGuests: 4,
   },
   {
-    created_at: fromToday(-1, true),
+    createdAt: fromToday(-1, true),
     startDate: fromToday(12),
     endDate: fromToday(17),
     cabinId: 4,
@@ -137,7 +138,7 @@ export const bookings = [
     numGuests: 4,
   },
   {
-    created_at: fromToday(-3, true),
+    createdAt: fromToday(-3, true),
     startDate: fromToday(18),
     endDate: fromToday(19),
     cabinId: 4,
@@ -150,7 +151,7 @@ export const bookings = [
 
   // CABIN 005
   {
-    created_at: fromToday(0, true),
+    createdAt: fromToday(0, true),
     startDate: fromToday(14),
     endDate: fromToday(21),
     cabinId: 5,
@@ -161,7 +162,7 @@ export const bookings = [
     numGuests: 5,
   },
   {
-    created_at: fromToday(-6, true),
+    createdAt: fromToday(-6, true),
     startDate: fromToday(-6),
     endDate: fromToday(-4),
     cabinId: 5,
@@ -172,7 +173,7 @@ export const bookings = [
     numGuests: 4,
   },
   {
-    created_at: fromToday(-4, true),
+    createdAt: fromToday(-4, true),
     startDate: fromToday(-4),
     endDate: fromToday(-1),
     cabinId: 5,
@@ -185,7 +186,7 @@ export const bookings = [
 
   // CABIN 006
   {
-    created_at: fromToday(-3, true),
+    createdAt: fromToday(-3, true),
     startDate: fromToday(0),
     endDate: fromToday(11),
     cabinId: 6,
@@ -197,7 +198,7 @@ export const bookings = [
     numGuests: 6,
   },
   {
-    created_at: fromToday(-16, true),
+    createdAt: fromToday(-16, true),
     startDate: fromToday(-16),
     endDate: fromToday(-9),
     cabinId: 6,
@@ -208,7 +209,7 @@ export const bookings = [
     numGuests: 4,
   },
   {
-    created_at: fromToday(-18, true),
+    createdAt: fromToday(-18, true),
     startDate: fromToday(-4),
     endDate: fromToday(-1),
     cabinId: 6,
@@ -221,7 +222,7 @@ export const bookings = [
 
   // CABIN 007
   {
-    created_at: fromToday(-2, true),
+    createdAt: fromToday(-2, true),
     startDate: fromToday(17),
     endDate: fromToday(23),
     cabinId: 7,
@@ -232,7 +233,7 @@ export const bookings = [
     numGuests: 8,
   },
   {
-    created_at: fromToday(-7, true),
+    createdAt: fromToday(-7, true),
     startDate: fromToday(40),
     endDate: fromToday(50),
     cabinId: 7,
@@ -243,7 +244,7 @@ export const bookings = [
     numGuests: 7,
   },
   {
-    created_at: fromToday(-55, true),
+    createdAt: fromToday(-55, true),
     startDate: fromToday(32),
     endDate: fromToday(37),
     cabinId: 7,
@@ -256,7 +257,7 @@ export const bookings = [
 
   // CABIN 008
   {
-    created_at: fromToday(-8, true),
+    createdAt: fromToday(-8, true),
     startDate: fromToday(-5),
     endDate: fromToday(0),
     cabinId: 8,
@@ -268,7 +269,7 @@ export const bookings = [
     numGuests: 9,
   },
   {
-    created_at: fromToday(0, true),
+    createdAt: fromToday(0, true),
     startDate: fromToday(0),
     endDate: fromToday(5),
     cabinId: 8,
@@ -280,7 +281,7 @@ export const bookings = [
     numGuests: 10,
   },
   {
-    created_at: fromToday(-10, true),
+    createdAt: fromToday(-10, true),
     startDate: fromToday(10),
     endDate: fromToday(13),
     cabinId: 8,

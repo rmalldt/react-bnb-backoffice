@@ -1,21 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-
-const StyledLogo = styled.div`
-  text-align: center;
-`;
-
-const StyledImg = styled.img`
-  height: 9.6rem;
-  width: auto;
-`;
+import * as S from '../styles';
 
 function Logo() {
   return (
     <NavLink to="/dashboard">
-      <StyledLogo>
-        <StyledImg src="/logo-no-bg.png" alt="Logo" />
-      </StyledLogo>
+      <S.LogoContainer>
+        <S.LogoImg src="/logo-no-bg.png" alt="Logo" />
+      </S.LogoContainer>
     </NavLink>
   );
 }

@@ -1,5 +1,5 @@
 import { useCabins } from './useCabins';
-import StyledSpinner from '../../ui/StyledSpinner';
+import Spinner from '../../styles/Spinner';
 import CabinRow from './CabinRow';
 import Table from '../../ui/Table';
 import Menus from '../../ui/Menus';
@@ -10,7 +10,7 @@ function CabinTable() {
   let { cabins, isLoading } = useCabins();
   const [searchParams] = useSearchParams();
 
-  if (isLoading) return <StyledSpinner />;
+  if (isLoading) return <Spinner />;
 
   if (!cabins.length) return <Empty resourceName="cabins" />;
 
