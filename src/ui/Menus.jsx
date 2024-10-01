@@ -11,6 +11,13 @@ Menus.propTypes = {
 
 Button.propTypes = {
   children: PropTypes.any,
+  icon: PropTypes.object,
+  onClick: PropTypes.func,
+};
+
+List.propTypes = {
+  id: PropTypes.number,
+  children: PropTypes.any,
 };
 
 const StyledMenu = styled.div`
@@ -45,8 +52,8 @@ const StyledList = styled.ul`
   box-shadow: var(--shadow-md);
   border-radius: var(--border-radius-md);
 
-  right: ${props => props.position.x}px;
-  top: ${props => props.position.y}px;
+  right: ${props => props.$position.x}px;
+  top: ${props => props.$position.y}px;
 `;
 
 const StyledButton = styled.button`
@@ -82,14 +89,9 @@ function Menus({ children }) {
   const [openId, setOpenId] = useState('');
   const [position, setPosition] = useState(null);
 
-  const open = id => {
-    console.log('INSIDE SETTER', id);
-    setOpenId(id);
-  };
-  const close = () => {
-    console.log('CLOSED');
-    setOpenId('');
-  };
+  const open = setOpenId;
+
+  const close = () => setOpenId('');
 
   return (
     <MenusContext.Provider
@@ -108,8 +110,7 @@ function Menus({ children }) {
 
 // 3. Child components
 function Toggle({ id }) {
-  const { openId, open, close, position, setPosition } =
-    useContext(MenusContext);
+  const { openId, open, close, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
     e.stopPropagation();
@@ -119,14 +120,19 @@ function Toggle({ id }) {
       x: window.innerWidth - rect.width - rect.x,
       y: rect.y + rect.height + 8,
     };
+
     setPosition(position);
 
-    console.log('SETTING id');
     openId === '' || openId !== id ? open(id) : close();
   }
 
   return (
-    <StyledToggle onClick={handleClick}>
+    <StyledToggle
+      onClick={e => {
+        console.log('TOGGLE');
+        handleClick(e);
+      }}
+    >
       <HiEllipsisVertical />
     </StyledToggle>
   );
@@ -134,12 +140,16 @@ function Toggle({ id }) {
 
 function List({ id, children }) {
   const { openId, close, position } = useContext(MenusContext);
-  const ref = useOutsideClick(close, false);
+
+  const ref = useOutsideClick(() => {
+    console.log('OUTSIDE');
+    close();
+  });
 
   if (openId !== id) return null;
 
   return createPortal(
-    <StyledList ref={ref} position={position}>
+    <StyledList ref={ref} $position={position}>
       {children}
     </StyledList>,
     document.body
