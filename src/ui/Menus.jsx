@@ -127,12 +127,7 @@ function Toggle({ id }) {
   }
 
   return (
-    <StyledToggle
-      onClick={e => {
-        console.log('TOGGLE');
-        handleClick(e);
-      }}
-    >
+    <StyledToggle onClick={e => handleClick(e)}>
       <HiEllipsisVertical />
     </StyledToggle>
   );
@@ -141,10 +136,7 @@ function Toggle({ id }) {
 function List({ id, children }) {
   const { openId, close, position } = useContext(MenusContext);
 
-  const ref = useOutsideClick(() => {
-    console.log('OUTSIDE');
-    close();
-  });
+  const ref = useOutsideClick(close);
 
   if (openId !== id) return null;
 

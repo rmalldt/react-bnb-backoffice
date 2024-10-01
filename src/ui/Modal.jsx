@@ -94,15 +94,6 @@ function Open({ children, opens: windowName }) {
   });
 }
 
-// Event is handled on bubbling phase by default.
-// When Open button is clicked, it opens the Window as it reaches the target
-// i.e. the Open onclick callback executes that sets the openName and this Component
-// is rendered as it uses the openName from Context and finally returns the JSX to
-// be displayed on the commit phase then immediately the useOutsideClick executes
-// on bubbling detecting that the same Open button click event is outside the Window
-// and then closes the Window immediately.
-// The solution is to ONLY listen on capturing phase and prevent callback to be
-// invoked on the bubbling phase.
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
   const ref = useOutsideClick(close, true);

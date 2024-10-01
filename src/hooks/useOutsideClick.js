@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-// Register the event listener ready to be executed when clicked outside the component using this hook.
+// Register the event listener ready to be executed when clicked outside the component that uses this hook.
 export function useOutsideClick(handler, listenCapturing = false) {
   const ref = useRef();
 
