@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 Filter.propTypes = {
   filterField: PropTypes.string,
   options: PropTypes.array,
+  searchParamsToSet: PropTypes.array,
 };
 
 const FilterDiv = styled.div`
@@ -42,12 +43,15 @@ const FilterButton = styled.button`
   }
 `;
 
-function Filter({ filterField, options }) {
+function Filter({ filterField, options, searchParamsToSet }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentFilter = searchParams.get(filterField) || options[0];
+  const currentFilter = searchParams.get(filterField) || options.at(0).value;
 
   function handleClick(value) {
     searchParams.set(filterField, value);
+    searchParamsToSet.forEach(param =>
+      searchParams.set(param.name, param.value)
+    );
     setSearchParams(searchParams);
   }
 

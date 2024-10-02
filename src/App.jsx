@@ -16,8 +16,7 @@ import MessageToaster from './ui/MessageToaster';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60 * 1000, // 1 min
-      //staleTime: 0
+      staleTime: 60 * 1000,
     },
   },
 });

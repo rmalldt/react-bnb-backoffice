@@ -8,14 +8,6 @@ function fromToday(numDays, withTime = false) {
 }
 
 function Dashboard() {
-  const date1 = fromToday(0, true);
-  const date2 = fromToday(-5);
-  const date3 = fromToday(5);
-
-  console.log(date1);
-  console.log(date2);
-  console.log(date3);
-
   return (
     <S.RowDiv type="horizontal">
       <S.Heading as="h1">Dashboard</S.Heading>
