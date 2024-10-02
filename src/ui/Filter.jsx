@@ -49,7 +49,8 @@ function Filter({ filterField, options, searchParamsToSet }) {
 
   function handleClick(value) {
     searchParams.set(filterField, value);
-    searchParamsToSet.forEach(param =>
+    // Reset the search param
+    searchParamsToSet?.forEach(param =>
       searchParams.set(param.name, param.value)
     );
     setSearchParams(searchParams);

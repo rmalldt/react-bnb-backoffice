@@ -13,6 +13,8 @@ function BookingTableOperations() {
           { label: 'Checked in', value: 'checked-in' },
           { label: 'Unconfirmed', value: 'unconfirmed' },
         ]}
+        // Reset the page number when the status is changed because the pagination
+        // result uses the page number to fetch the row begin and end values.
         searchParamsToSet={[{ name: 'page', value: 1 }]}
       />
 
