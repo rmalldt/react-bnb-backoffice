@@ -1,32 +1,32 @@
 import SortBy from '../../ui/SortBy';
 import Filter from '../../ui/Filter';
-import TableOperations from '../../ui/TableOperations';
+import * as S from '../../styles';
 
 function BookingTableOperations() {
   return (
-    <TableOperations>
+    <S.TableOperationsDiv>
       <Filter
         filterField="status"
         options={[
-          { value: 'all', label: 'All' },
-          { value: 'checked-out', label: 'Checked out' },
-          { value: 'checked-in', label: 'Checked in' },
-          { value: 'unconfirmed', label: 'Unconfirmed' },
+          { label: 'All', value: 'all' },
+          { label: 'Checked out', value: 'checked-out' },
+          { label: 'Checked in', value: 'checked-in' },
+          { label: 'Unconfirmed', value: 'unconfirmed' },
         ]}
       />
 
       <SortBy
         options={[
-          { value: 'startDate-desc', label: 'Sort by date (recent first)' },
-          { value: 'startDate-asc', label: 'Sort by date (earlier first)' },
+          { label: 'Sort by date (recent first)', value: 'startDate-desc' },
+          { label: 'Sort by date (earlier first)', value: 'startDate-asc' },
           {
-            value: 'totalPrice-desc',
             label: 'Sort by amount (high first)',
+            value: 'totalPrice-desc',
           },
-          { value: 'totalPrice-asc', label: 'Sort by amount (low first)' },
+          { label: 'Sort by amount (low first)', value: 'totalPrice-asc' },
         ]}
       />
-    </TableOperations>
+    </S.TableOperationsDiv>
   );
 }
 
