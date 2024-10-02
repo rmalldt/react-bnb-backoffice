@@ -7,7 +7,7 @@ Filter.propTypes = {
   options: PropTypes.array,
 };
 
-const StyledFilter = styled.div`
+const FilterDiv = styled.div`
   border: 1px solid var(--color-grey-100);
   background-color: var(--color-grey-0);
   box-shadow: var(--shadow-sm);
@@ -18,7 +18,7 @@ const StyledFilter = styled.div`
   gap: 0.4rem;
 `;
 
-const StyledFilterButton = styled.button`
+const FilterButton = styled.button`
   background-color: var(--color-grey-0);
   border: none;
 
@@ -52,18 +52,18 @@ function Filter({ filterField, options }) {
   }
 
   return (
-    <StyledFilter>
+    <FilterDiv>
       {options.map(option => (
-        <StyledFilterButton
+        <FilterButton
           key={option.label}
           onClick={() => handleClick(option.value)}
           $active={option.value === currentFilter ? 'active' : ''}
           disabled={option.value === currentFilter}
         >
           {option.label}
-        </StyledFilterButton>
+        </FilterButton>
       ))}
-    </StyledFilter>
+    </FilterDiv>
   );
 }
 

@@ -14,7 +14,7 @@ CabinRow.propTypes = {
   cabin: PropTypes.object,
 };
 
-const StyledImg = styled.img`
+const CabinImg = styled.img`
   display: block;
   width: 6.4rem;
   aspect-ratio: 3 / 2;
@@ -23,19 +23,19 @@ const StyledImg = styled.img`
   transform: scale(1.5) translateX(-7px);
 `;
 
-const StyledCabin = styled.div`
+const CabinNameDiv = styled.div`
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--color-grey-600);
   font-family: 'Sono';
 `;
 
-const StyledPrice = styled.div`
+const CabinPriceDiv = styled.div`
   font-family: 'Sono';
   font-weight: 600;
 `;
 
-const StyledDiscount = styled.div`
+const CabinDiscountDiv = styled.div`
   font-family: 'Sono';
   font-weight: 500;
   color: var(--color-green-700);
@@ -69,12 +69,12 @@ function CabinRow({ cabin }) {
   const isWorking = isDeleting || isCreating;
   return (
     <Table.Row>
-      <StyledImg src={image} />
-      <StyledCabin>{name}</StyledCabin>
+      <CabinImg src={image} />
+      <CabinNameDiv>{name}</CabinNameDiv>
       <div>Fits upto {maxCapacity}</div>
-      <StyledPrice>{formatCurrency(regularPrice)}</StyledPrice>
+      <CabinPriceDiv>{formatCurrency(regularPrice)}</CabinPriceDiv>
       {discount ? (
-        <StyledDiscount>{formatCurrency(discount)}</StyledDiscount>
+        <CabinDiscountDiv>{formatCurrency(discount)}</CabinDiscountDiv>
       ) : (
         <span>&mdash;</span>
       )}

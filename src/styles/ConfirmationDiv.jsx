@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ConfirmationContainer = styled.div`
+export const ConfirmationDiv = styled.div`
   width: 40rem;
 
   display: flex;

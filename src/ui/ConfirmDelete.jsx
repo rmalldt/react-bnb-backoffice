@@ -10,7 +10,7 @@ ConfirmDelete.propTypes = {
 
 function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
   return (
-    <S.ConfirmationContainer>
+    <S.ConfirmationDiv>
       <S.Heading as="h3">Delete {resourceName}</S.Heading>
       <p>
         Are you sure you want to delete this {resourceName} permanently? This
@@ -29,7 +29,7 @@ function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
           Delete
         </S.Button>
       </div>
-    </S.ConfirmationContainer>
+    </S.ConfirmationDiv>
   );
 }
 

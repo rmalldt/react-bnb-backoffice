@@ -3,7 +3,7 @@ import Logo from './Logo';
 import MainNav from './MainNav';
 import Uploader from '../data/Uploader';
 
-const StyledSidebar = styled.aside`
+const SidebarAside = styled.aside`
   background-color: var(--color-grey-0);
   padding: 3.2rem 2.4rem;
   border-right: 1px solid var(--color-grey-100);
@@ -17,11 +17,11 @@ const StyledSidebar = styled.aside`
 
 function Sidebar() {
   return (
-    <StyledSidebar>
+    <SidebarAside>
       <Logo />
       <MainNav />
       <Uploader />
-    </StyledSidebar>
+    </SidebarAside>
   );
 }
 

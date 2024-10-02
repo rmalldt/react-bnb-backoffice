@@ -1,6 +1,6 @@
 import * as S from '../styles';
 
-function Header() {
+function PageHeader() {
   return (
     <S.Header>
       <S.Heading as="h1">The Office</S.Heading>
@@ -8,4 +8,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default PageHeader;

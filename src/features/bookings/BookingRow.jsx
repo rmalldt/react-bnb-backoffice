@@ -81,7 +81,9 @@ function BookingRow({ booking }) {
         </span>
       </StyledStacked>
 
-      <S.Tag type={statusToTagName[status]}>{status.replace('-', ' ')}</S.Tag>
+      <S.TagSpan type={statusToTagName[status]}>
+        {status.replace('-', ' ')}
+      </S.TagSpan>
 
       <StyledAmount>{formatCurrency(totalPrice)}</StyledAmount>
     </Table.Row>

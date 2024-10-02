@@ -4,7 +4,7 @@ import * as S from '../../styles';
 
 function CabinTableOperations() {
   return (
-    <S.OperationsContainer>
+    <S.OperationsDiv>
       <Filter
         filterField="discount"
         options={[
@@ -23,7 +23,7 @@ function CabinTableOperations() {
           { label: 'Sort by capacity (high-first)', value: 'maxCapacity-desc' },
         ]}
       />
-    </S.OperationsContainer>
+    </S.OperationsDiv>
   );
 }
 

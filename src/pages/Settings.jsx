@@ -3,10 +3,10 @@ import * as S from '../styles';
 
 function Settings() {
   return (
-    <S.Row>
+    <S.RowDiv>
       <S.Heading as="h1">Update hotel settings</S.Heading>
       <UpdateSettingsForm />
-    </S.Row>
+    </S.RowDiv>
   );
 }
 

@@ -17,9 +17,9 @@ function Dashboard() {
   console.log(date3);
 
   return (
-    <S.Row type="horizontal">
+    <S.RowDiv type="horizontal">
       <S.Heading as="h1">Dashboard</S.Heading>
-    </S.Row>
+    </S.RowDiv>
   );
 }
 
