@@ -11,6 +11,9 @@ import TextArea from './styles/Textarea';
 import TagSpan from './styles/TagSpan';
 import { ConfirmationDiv } from './styles/ConfirmationDiv';
 import { Header } from './styles/Header';
+import ButtonText from './styles/ButtonText';
+import ButtonIcon from './styles/ButtonIcon';
+import ButtonGroup from './styles/ButtonGroup';
 
 export {
   Heading,
@@ -26,4 +29,7 @@ export {
   TagSpan,
   Header,
   ConfirmationDiv,
+  ButtonText,
+  ButtonIcon,
+  ButtonGroup,
 };

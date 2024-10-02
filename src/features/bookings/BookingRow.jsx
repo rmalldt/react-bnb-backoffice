@@ -1,25 +1,26 @@
 import styled from 'styled-components';
 import { format, isToday } from 'date-fns';
 import PropTypes from 'prop-types';
-
 import * as S from '../../styles';
 import Table from '../../ui/Table';
-
 import { formatCurrency } from '../../utils/helpers';
 import { formatDistanceFromNow } from '../../utils/helpers';
+import Menus from '../../ui/Menus';
+import { HiEye } from 'react-icons/hi2';
+import { useNavigate } from 'react-router-dom';
 
 BookingRow.propTypes = {
   booking: PropTypes.object,
 };
 
-const StyledCabin = styled.div`
+const CabinDiv = styled.div`
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--color-grey-600);
   font-family: 'Sono';
 `;
 
-const StyledStacked = styled.div`
+const StackedDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -34,7 +35,7 @@ const StyledStacked = styled.div`
   }
 `;
 
-const StyledAmount = styled.div`
+const AmountDiv = styled.div`
   font-family: 'Sono';
   font-weight: 500;
 `;
@@ -53,6 +54,8 @@ function BookingRow({ booking }) {
     cabins: { name: cabinName },
   } = booking;
 
+  const navigate = useNavigate();
+
   const statusToTagName = {
     unconfirmed: 'blue',
     'checked-in': 'green',
@@ -61,14 +64,14 @@ function BookingRow({ booking }) {
 
   return (
     <Table.Row>
-      <StyledCabin>{cabinName}</StyledCabin>
+      <CabinDiv>{cabinName}</CabinDiv>
 
-      <StyledStacked>
+      <StackedDiv>
         <span>{guestName}</span>
         <span>{email}</span>
-      </StyledStacked>
+      </StackedDiv>
 
-      <StyledStacked>
+      <StackedDiv>
         <span>
           {isToday(new Date(startDate))
             ? 'Today'
@@ -79,13 +82,25 @@ function BookingRow({ booking }) {
           {format(new Date(startDate), 'MMM dd yyyy')} &mdash;{' '}
           {format(new Date(endDate), 'MMM dd yyyy')}
         </span>
-      </StyledStacked>
+      </StackedDiv>
 
       <S.TagSpan type={statusToTagName[status]}>
         {status.replace('-', ' ')}
       </S.TagSpan>
 
-      <StyledAmount>{formatCurrency(totalPrice)}</StyledAmount>
+      <AmountDiv>{formatCurrency(totalPrice)}</AmountDiv>
+
+      <Menus.Menu>
+        <Menus.Toggle id={bookingId} />
+        <Menus.List id={bookingId}>
+          <Menus.Button
+            icon={<HiEye />}
+            onClick={() => navigate(`/bookings/${bookingId}`)}
+          >
+            View details
+          </Menus.Button>
+        </Menus.List>
+      </Menus.Menu>
     </Table.Row>
   );
 }
