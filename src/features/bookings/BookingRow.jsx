@@ -6,9 +6,15 @@ import Table from '../../ui/Table';
 import { formatCurrency } from '../../utils/helpers';
 import { formatDistanceFromNow } from '../../utils/helpers';
 import Menus from '../../ui/Menus';
-import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEye } from 'react-icons/hi2';
+import {
+  HiArchiveBoxXMark,
+  HiArrowDownOnSquare,
+  HiArrowUpOnSquare,
+  HiEye,
+} from 'react-icons/hi2';
 import { useNavigate } from 'react-router-dom';
 import { useCheckout } from '../check-in-out/useCheckout';
+import { useDeleteBooking } from './useDeleteBooking';
 
 BookingRow.propTypes = {
   booking: PropTypes.object,
@@ -57,6 +63,7 @@ function BookingRow({ booking }) {
 
   const navigate = useNavigate();
   const { checkout, isCheckingOut } = useCheckout();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
 
   const statusToTagName = {
     unconfirmed: 'blue',
@@ -116,6 +123,15 @@ function BookingRow({ booking }) {
               disabled={isCheckingOut}
             >
               Check out
+            </Menus.Button>
+          )}
+          {status === 'unconfirmed' && (
+            <Menus.Button
+              icon={<HiArchiveBoxXMark />}
+              onClick={() => deleteBooking(bookingId)}
+              disabled={isDeleting}
+            >
+              Delete
             </Menus.Button>
           )}
         </Menus.List>

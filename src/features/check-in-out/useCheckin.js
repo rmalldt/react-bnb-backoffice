@@ -19,23 +19,8 @@ export function useCheckin() {
       queryClient.invalidateQueries({ active: true });
       navigate('/');
     },
-    onError: () => toast.error('There was error checkin in. Could not checkin'),
+    onError: () => toast.error('There was an error checkin in the booking.'),
   });
 
   return { checkin, isCheckingIn };
 }
-
-const obj = { id: 10, name: 'jim' };
-
-// Shallow copy
-const copy = { ...obj };
-console.log(copy);
-
-// New obj using spread operator
-const newObj = {
-  department: 'CS',
-  year: 2020,
-  ...obj,
-};
-
-console.log(newObj);
