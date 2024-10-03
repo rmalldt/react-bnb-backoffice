@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { format, isToday } from 'date-fns';
 import {
@@ -10,8 +11,11 @@ import {
 import DataItem from '../../ui/DataItem';
 import { formatDistanceFromNow, formatCurrency } from '../../utils/helpers';
 
-const BookingDataBoxDiv = styled.section`
-  /* Box */
+BookingDataBox.propTypes = {
+  booking: PropTypes.object,
+};
+
+const BookingDataBoxSection = styled.section`
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
@@ -19,7 +23,7 @@ const BookingDataBoxDiv = styled.section`
   overflow: hidden;
 `;
 
-const Header = styled.header`
+const BookingHeader = styled.header`
   background-color: var(--color-brand-500);
   padding: 2rem 4rem;
   color: #e0e7ff;
@@ -49,11 +53,11 @@ const Header = styled.header`
   }
 `;
 
-const Section = styled.section`
+const BookingBodySection = styled.section`
   padding: 3.2rem 4rem 1.2rem;
 `;
 
-const Guest = styled.div`
+const GuestDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 1.2rem;
@@ -66,7 +70,7 @@ const Guest = styled.div`
   }
 `;
 
-const Price = styled.div`
+const PriceDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -92,14 +96,14 @@ const Price = styled.div`
   }
 `;
 
-const Flag = styled.img`
+const FlagImg = styled.img`
   max-width: 2rem;
   border-radius: var(--border-radius-tiny);
   display: block;
   border: 1px solid var(--color-grey-100);
 `;
 
-const Footer = styled.footer`
+const BookingFooter = styled.footer`
   padding: 1.6rem 4rem;
   font-size: 1.2rem;
   color: var(--color-grey-500);
@@ -125,8 +129,8 @@ function BookingDataBox({ booking }) {
   } = booking;
 
   return (
-    <BookingDataBoxDiv>
-      <Header>
+    <BookingDataBoxSection>
+      <BookingHeader>
         <div>
           <HiOutlineHomeModern />
           <p>
@@ -141,11 +145,13 @@ function BookingDataBox({ booking }) {
             : formatDistanceFromNow(startDate)}
           ) &mdash; {format(new Date(endDate), 'EEE, MMM dd yyyy')}
         </p>
-      </Header>
+      </BookingHeader>
 
-      <Section>
-        <Guest>
-          {countryFlag && <Flag src={countryFlag} alt={`Flag of ${country}`} />}
+      <BookingBodySection>
+        <GuestDiv>
+          {countryFlag && (
+            <FlagImg src={countryFlag} alt={`Flag of ${country}`} />
+          )}
           <p>
             {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ''}
           </p>
@@ -153,7 +159,7 @@ function BookingDataBox({ booking }) {
           <p>{email}</p>
           <span>&bull;</span>
           <p>National ID {nationalId}</p>
-        </Guest>
+        </GuestDiv>
 
         {observations && (
           <DataItem
@@ -168,7 +174,7 @@ function BookingDataBox({ booking }) {
           {hasBreakfast ? 'Yes' : 'No'}
         </DataItem>
 
-        <Price $isPaid={isPaid}>
+        <PriceDiv $isPaid={isPaid}>
           <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}>
             {formatCurrency(totalPrice)}
 
@@ -179,13 +185,13 @@ function BookingDataBox({ booking }) {
           </DataItem>
 
           <p>{isPaid ? 'Paid' : 'Will pay at property'}</p>
-        </Price>
-      </Section>
+        </PriceDiv>
+      </BookingBodySection>
 
-      <Footer>
+      <BookingFooter>
         <p>Booked {format(new Date(createdAt), 'EEE, MMM dd yyyy, p')}</p>
-      </Footer>
-    </BookingDataBoxDiv>
+      </BookingFooter>
+    </BookingDataBoxSection>
   );
 }
 

@@ -2,10 +2,9 @@ import styled from 'styled-components';
 import BookingDataBox from './BookingDataBox';
 import * as S from '../../styles';
 import { useMoveBack } from '../../hooks/useMoveBack';
-import { useQuery } from '@tanstack/react-query';
-import { getBooking } from '../../services/apiBookings';
-import { useParams } from 'react-router-dom';
 import { useBooking } from './useBooking';
+import { HiArrowDownOnSquare } from 'react-icons/hi2';
+import { useNavigate } from 'react-router-dom';
 
 const HeadingGroupDiv = styled.div`
   display: flex;
@@ -16,12 +15,11 @@ const HeadingGroupDiv = styled.div`
 function BookingDetail() {
   const { booking, isLoading } = useBooking();
   const moveBack = useMoveBack();
+  const navigate = useNavigate();
 
   if (isLoading) return <S.Spinner />;
 
-  console.log(booking);
-
-  const { id, status } = booking;
+  const { id: bookingId, status } = booking;
 
   const statusToTagName = {
     unconfirmed: 'blue',
@@ -33,7 +31,7 @@ function BookingDetail() {
     <>
       <S.RowDiv type="horizontal">
         <HeadingGroupDiv>
-          <S.Heading as="h1">Booking #{id}</S.Heading>
+          <S.Heading as="h1">Booking #{bookingId}</S.Heading>
           <S.TagSpan type={statusToTagName[status]}>
             {status.replace('-', ' ')}
           </S.TagSpan>
@@ -44,6 +42,14 @@ function BookingDetail() {
       <BookingDataBox booking={booking} />
 
       <S.ButtonGroup>
+        {status === 'unconfirmed' && (
+          <S.Button
+            icon={<HiArrowDownOnSquare />}
+            onClick={() => navigate(`/checkin/${bookingId}`)}
+          >
+            Check in
+          </S.Button>
+        )}
         <S.Button $variation="secondary" onClick={moveBack}>
           Back
         </S.Button>

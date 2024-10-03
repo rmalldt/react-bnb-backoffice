@@ -73,7 +73,6 @@ function Pagination({ count }) {
 
   // Get current page from URL
   const currentPage = searchParams.get('page') ? +searchParams.get('page') : 1;
-
   const pageCount = Math.ceil(count / RESULTS_PER_PAGE);
 
   function handleNextPage() {
