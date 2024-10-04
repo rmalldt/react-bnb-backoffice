@@ -52,11 +52,9 @@ const AmountDiv = styled.div`
 function BookingRow({ booking }) {
   const {
     id: bookingId,
-    createdAt,
     startDate,
     endDate,
     numNights,
-    numGuests,
     totalPrice,
     status,
     guests: { fullName: guestName, email },
