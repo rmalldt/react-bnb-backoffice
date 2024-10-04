@@ -14,6 +14,7 @@ import AppLayout from './ui/AppLayout';
 import MessageToaster from './ui/MessageToaster';
 import Booking from './pages/Booking';
 import Checkin from './pages/Checkin';
+import ProtectedRoute from './ui/ProtectedRoute';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,7 +32,20 @@ function App() {
         <GlobalStyles />
         <BrowserRouter>
           <Routes>
-            <Route element={<AppLayout />}>
+            {/* 
+            All routes are child routes of AppLayout i.e. all the routes are rendered
+            inside the AppLayout component.
+            Therefore, we wrap AppLayout with Protected route component. This means
+            that all the child routes can only be accessed if the protected AppLayout
+            component determines that there is a currently logged user.
+            */}
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="bookings" element={<Bookings />} />

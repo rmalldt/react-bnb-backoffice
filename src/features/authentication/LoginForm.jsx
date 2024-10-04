@@ -6,13 +6,20 @@ import { useLogin } from './useLogin';
 function LoginForm() {
   const [email, setEmail] = useState('rupakm@example.com');
   const [password, setPassword] = useState('');
-
   const { login, isLoading } = useLogin();
 
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) return;
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail('');
+          setPassword('');
+        },
+      }
+    );
   }
 
   return (
