@@ -6,18 +6,29 @@ export async function login({ email, password }) {
     password,
   });
 
-  if (error) throw new Error(error.message);
+  console.log('login data', data);
+
+  if (error) throw new Error('Login error', { cause: error });
   return data;
 }
 
 export async function getCurrentUser() {
-  const { data: session } = await supabase.auth.getSession(); // check active session in local storage
+  console.log('Checking session data');
+  // Check active session in local storage
+  const { data: session, error: sessionError } =
+    await supabase.auth.getSession();
+
+  if (sessionError) throw new Error('Login error', { cause: sessionError });
   if (!session.session) return null;
 
-  const { data, error } = await supabase.auth.getUser();
-  console.log(data);
+  console.log('session data', session);
 
-  if (error) throw new Error(error.message);
+  // For added security, refetch the user from server
+  const { data: user, error: userError } = await supabase.auth.getUser();
 
-  return data?.user;
+  if (userError) throw new Error('Login error', { cause: userError });
+
+  console.log('user data', user);
+
+  return user?.user;
 }

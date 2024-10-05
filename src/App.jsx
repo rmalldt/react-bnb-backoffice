@@ -32,13 +32,6 @@ function App() {
         <GlobalStyles />
         <BrowserRouter>
           <Routes>
-            {/* 
-            All routes are child routes of AppLayout i.e. all the routes are rendered
-            inside the AppLayout component.
-            Therefore, we wrap AppLayout with Protected route component. This means
-            that all the child routes can only be accessed if the protected AppLayout
-            component determines that there is a currently logged user.
-            */}
             <Route
               element={
                 <ProtectedRoute>
