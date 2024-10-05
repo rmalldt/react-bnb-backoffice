@@ -13,7 +13,6 @@ export async function login({ email, password }) {
 }
 
 export async function getCurrentUser() {
-  console.log('Checking session data');
   // Check active session in local storage
   const { data: session, error: sessionError } =
     await supabase.auth.getSession();
@@ -21,14 +20,14 @@ export async function getCurrentUser() {
   if (sessionError) throw new Error('Login error', { cause: sessionError });
   if (!session.session) return null;
 
-  console.log('session data', session);
-
   // For added security, refetch the user from server
   const { data: user, error: userError } = await supabase.auth.getUser();
 
   if (userError) throw new Error('Login error', { cause: userError });
-
-  console.log('user data', user);
-
   return user?.user;
+}
+
+export async function logout() {
+  const { error: logoutError } = await supabase.auth.signOut();
+  if (logoutError) throw new Error('Logout error', { cause: logoutError });
 }
