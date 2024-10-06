@@ -8,7 +8,14 @@ const DashboardLayoutDiv = styled.div`
 `;
 
 function DashBoardLayout() {
-  return <DashboardLayoutDiv></DashboardLayoutDiv>;
+  return (
+    <DashboardLayoutDiv>
+      <div>Statistics Overview</div>
+      <div>List of activity</div>
+      <div>Stay duration chart</div>
+      <div>Sales chart</div>
+    </DashboardLayoutDiv>
+  );
 }
 
 export default DashBoardLayout;
