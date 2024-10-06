@@ -1,14 +1,13 @@
 import * as S from '../styles';
-import DashBoardLayout from '../ui/DashBoardLayout';
+import DashBoardLayout from '../features/dashboard/DashBoardLayout';
+import DashboardFilter from '../features/dashboard/DashboardFilter';
 
 function Dashboard() {
   return (
     <>
       <S.RowDiv type="horizontal">
         <S.Heading as="h1">Dashboard</S.Heading>
-        <p>
-          <strong>Button</strong>
-        </p>
+        <DashboardFilter />
       </S.RowDiv>
       <DashBoardLayout />
     </>
