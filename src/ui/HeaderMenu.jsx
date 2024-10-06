@@ -3,6 +3,7 @@ import * as S from '../styles';
 import Logout from '../features/authentication/Logout';
 import { HiOutlineUser } from 'react-icons/hi2';
 import { useNavigate } from 'react-router-dom';
+import DarkModeToggle from './DarkModeToggle';
 
 const HeaderList = styled.ul`
   display: flex;
@@ -17,6 +18,13 @@ function HeaderMenu() {
         <S.ButtonIcon onClick={() => navigate('/account')}>
           <HiOutlineUser />
         </S.ButtonIcon>
+      </li>
+
+      <li>
+        <DarkModeToggle />
+      </li>
+
+      <li>
         <Logout />
       </li>
     </HeaderList>

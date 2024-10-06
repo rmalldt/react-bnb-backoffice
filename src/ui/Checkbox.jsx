@@ -5,7 +5,7 @@ Checkbox.propTypes = {
   checked: PropTypes.bool,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
-  id: PropTypes.number,
+  id: PropTypes.string,
   children: PropTypes.any,
 };
 

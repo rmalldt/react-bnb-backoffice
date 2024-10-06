@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import * as S from '../styles';
+
 import HeaderMenu from './HeaderMenu';
 import UserAvatar from '../features/authentication/UserAvatar';
 
