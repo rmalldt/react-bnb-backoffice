@@ -33,7 +33,7 @@ export async function getBookings({ filter, sortBy, page }) {
 
   if (error) {
     console.error(error);
-    throw new Error('Could not load bookings');
+    throw new Error('Could not load bookings', { cause: error });
   }
   return { data, count };
 }
@@ -47,14 +47,13 @@ export async function getBooking(id) {
 
   if (error) {
     console.error(error);
-    throw new Error('Could not find booking');
+    throw new Error('Could not find booking', { cause: error });
   }
-
   return data;
 }
 
 // Returns all BOOKINGS that were created after the given date.
-// E.g., get bookings created in the last 30 days.
+// The BOOKINGS starts with createdAt.
 // NOTE: date needs to be ISO string.
 export async function getBookingsAfterDate(date) {
   const { data, error } = await supabase
@@ -65,13 +64,14 @@ export async function getBookingsAfterDate(date) {
 
   if (error) {
     console.error(error);
-    throw new Error('Bookings could not get loaded');
+    throw new Error('Could not load bookings', { cause: error });
   }
-
   return data;
 }
 
 // Returns all STAYS that are were created after the given date
+// The STAYS starts with startDate.
+// NOTE: date needs to be ISO string.
 export async function getStaysAfterDate(date) {
   const { data, error } = await supabase
     .from('bookings')
@@ -81,9 +81,8 @@ export async function getStaysAfterDate(date) {
 
   if (error) {
     console.error(error);
-    throw new Error('Bookings could not get loaded');
+    throw new Error('Could not load bookings', { cause: error });
   }
-
   return data;
 }
 
@@ -103,7 +102,7 @@ export async function getStaysTodayActivity() {
 
   if (error) {
     console.error(error);
-    throw new Error('Bookings could not get loaded');
+    throw new Error('Could not load bookings', { cause: error });
   }
   return data;
 }
@@ -118,7 +117,7 @@ export async function updateBooking(id, obj) {
 
   if (error) {
     console.error(error);
-    throw new Error('Booking could not be updated');
+    throw new Error('Could not load bookings', { cause: error });
   }
   return data;
 }
@@ -128,7 +127,7 @@ export async function deleteBooking(id) {
 
   if (error) {
     console.error(error);
-    throw new Error('Booking could not be deleted');
+    throw new Error('Could not load bookings', { cause: error });
   }
   return data;
 }
