@@ -44,6 +44,7 @@ const FormError = styled.span`
 `;
 
 function FormRow({ label, error, children }) {
+  console.log(error);
   return (
     <FormRowDiv>
       {label && <FormLabel htmlFor={children.props.id}>{label}</FormLabel>}
