@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import LoginForm from '../features/authentication/LoginForm';
 import Logo from '../ui/Logo';
-
 import * as S from '../styles';
 
 const LoginLayout = styled.main`

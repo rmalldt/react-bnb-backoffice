@@ -1,3 +1,5 @@
+import UpdatePasswordForm from '../features/authentication/UpdatePasswordForm';
+import UpdateUserDataForm from '../features/authentication/UpdateUserDataForm';
 import * as S from '../styles';
 
 function Account() {
@@ -7,12 +9,12 @@ function Account() {
 
       <S.RowDiv>
         <S.Heading as="h3">Update user data</S.Heading>
-        <p>Update user data form</p>
+        <UpdateUserDataForm />
       </S.RowDiv>
 
       <S.RowDiv>
         <S.Heading as="h3">Update password</S.Heading>
-        <p>Update user password form</p>
+        <UpdatePasswordForm />
       </S.RowDiv>
     </>
   );

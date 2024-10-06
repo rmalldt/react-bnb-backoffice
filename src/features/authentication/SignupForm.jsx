@@ -13,7 +13,7 @@ function SignupForm() {
     signup(
       { fullName, email, password },
       {
-        onSettled: reset,
+        onSettled: () => reset(),
       }
     );
   }
@@ -82,7 +82,7 @@ function SignupForm() {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <S.Button variation="secondary" type="reset">
+        <S.Button $variation="secondary" type="reset" onClick={reset}>
           Cancel
         </S.Button>
         <S.Button>Create new user</S.Button>

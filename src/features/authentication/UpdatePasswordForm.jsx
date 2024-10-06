@@ -1,10 +1,7 @@
-import { useForm } from "react-hook-form";
-import Button from "../../ui/Button";
-import Form from "../../ui/Form";
-import FormRow from "../../ui/FormRow";
-import Input from "../../ui/Input";
-
-import { useUpdateUser } from "./useUpdateUser";
+import { useForm } from 'react-hook-form';
+import FormRow from '../../ui/FormRow';
+import * as S from '../../styles';
+import { useUpdateUser } from './useUpdateUser';
 
 function UpdatePasswordForm() {
   const { register, handleSubmit, formState, getValues, reset } = useForm();
@@ -17,21 +14,21 @@ function UpdatePasswordForm() {
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <S.Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow
         label="Password (min 8 characters)"
         error={errors?.password?.message}
       >
-        <Input
+        <S.Input
           type="password"
           id="password"
           autoComplete="current-password"
           disabled={isUpdating}
-          {...register("password", {
-            required: "This field is required",
+          {...register('password', {
+            required: 'This field is required',
             minLength: {
               value: 8,
-              message: "Password needs a minimum of 8 characters",
+              message: 'Password must be minimum of 8 characters',
             },
           })}
         />
@@ -41,25 +38,26 @@ function UpdatePasswordForm() {
         label="Confirm password"
         error={errors?.passwordConfirm?.message}
       >
-        <Input
+        <S.Input
           type="password"
           autoComplete="new-password"
           id="passwordConfirm"
           disabled={isUpdating}
-          {...register("passwordConfirm", {
-            required: "This field is required",
-            validate: (value) =>
-              getValues().password === value || "Passwords need to match",
+          {...register('passwordConfirm', {
+            required: 'This field is required',
+            validate: value =>
+              value === getValues().password ||
+              'Password did not match. Please try again',
           })}
         />
       </FormRow>
       <FormRow>
-        <Button onClick={reset} type="reset" variation="secondary">
+        <S.Button onClick={reset} type="reset" $variation="secondary">
           Cancel
-        </Button>
-        <Button disabled={isUpdating}>Update password</Button>
+        </S.Button>
+        <S.Button>Update password</S.Button>
       </FormRow>
-    </Form>
+    </S.Form>
   );
 }
 
