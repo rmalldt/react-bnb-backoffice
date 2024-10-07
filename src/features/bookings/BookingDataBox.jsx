@@ -10,6 +10,7 @@ import {
 
 import DataItem from '../../ui/DataItem';
 import { formatDistanceFromNow, formatCurrency } from '../../utils/helpers';
+import * as S from '../../styles';
 
 BookingDataBox.propTypes = {
   booking: PropTypes.object,
@@ -96,13 +97,6 @@ const PriceDiv = styled.div`
   }
 `;
 
-const FlagImg = styled.img`
-  max-width: 2rem;
-  border-radius: var(--border-radius-tiny);
-  display: block;
-  border: 1px solid var(--color-grey-100);
-`;
-
 const BookingFooter = styled.footer`
   padding: 1.6rem 4rem;
   font-size: 1.2rem;
@@ -150,7 +144,7 @@ function BookingDataBox({ booking }) {
       <BookingBodySection>
         <GuestDiv>
           {countryFlag && (
-            <FlagImg src={countryFlag} alt={`Flag of ${country}`} />
+            <S.FlagImg src={countryFlag} alt={`Flag of ${country}`} />
           )}
           <p>
             {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ''}

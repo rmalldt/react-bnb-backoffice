@@ -15,6 +15,7 @@ import ButtonIcon from './styles/ButtonIcon';
 import ButtonGroup from './styles/ButtonGroup';
 import FullPageDiv from './styles/FullPageDiv';
 import DashboardDivBox from './styles/DashboardDivBox';
+import FlagImg from './styles/FlagImg';
 
 export {
   Heading,
@@ -34,4 +35,5 @@ export {
   ButtonGroup,
   FullPageDiv,
   DashboardDivBox,
+  FlagImg,
 };

@@ -96,8 +96,8 @@ function StayDurationChart({ confirmedStays }) {
 
   return (
     <ChartBox>
-      <S.Heading type="h2">Stay duration summary</S.Heading>
-      <ResponsiveContainer width="100%" height={240}>
+      <S.Heading as="h2">Stay duration summary</S.Heading>
+      <ResponsiveContainer width="100%" height={260}>
         <PieChart>
           <Pie
             data={data}

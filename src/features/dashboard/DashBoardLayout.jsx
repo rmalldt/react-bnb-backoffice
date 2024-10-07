@@ -6,12 +6,13 @@ import Stats from './Stats';
 import { useCabins } from '../cabins/useCabins';
 import SalesChart from './SalesChart';
 import StayDurationChart from './StayDurationChart';
+import TodayActivity from './TodayActivity';
 
 const DashboardLayoutDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto 34rem auto;
-  gap: 2.4rem;
+  grid-template-rows: auto 32rem auto;
+  gap: 1rem;
 `;
 
 function DashBoardLayout() {
@@ -40,8 +41,7 @@ function DashBoardLayout() {
         numDays={numDays}
         numCabins={cabins.length}
       />
-      <div>Todays Activity</div>
-      <div>Stay duration chart</div>
+      <TodayActivity />
       <StayDurationChart confirmedStays={confirmedStays} />
       <SalesChart bookings={bookings} numDays={numDays} />
     </DashboardLayoutDiv>
