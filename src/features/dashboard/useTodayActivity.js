@@ -7,7 +7,5 @@ export function useTodayActivity() {
     queryFn: getStaysTodayActivity,
   });
 
-  console.log(stays);
-
   return { stays, isLoading };
 }

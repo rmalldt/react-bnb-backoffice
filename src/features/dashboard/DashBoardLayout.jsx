@@ -26,10 +26,6 @@ function DashBoardLayout() {
 
   const { cabins, isLoading: isLoadingCabins } = useCabins();
 
-  console.log('bookings', bookings);
-  // console.log('stays', stays);
-  // console.log('confirmedStays', confirmedStays);
-
   if (isLoadingBookings || isLoadingStays || isLoadingCabins)
     return <S.Spinner />;
 
