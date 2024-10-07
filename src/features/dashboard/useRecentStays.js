@@ -6,7 +6,7 @@ import { getStaysAfterDate } from '../../services/apiBookings';
 export function useRecentStays() {
   const [searchParams] = useSearchParams();
   const numDays = !searchParams.get('last') ? 7 : +searchParams.get('last');
-  const queryDate = subDays(new Date(), numDays).toISOString();
+  const queryDate = subDays(new Date(), numDays).toISOString(); // date-fns lib
 
   const { data: stays, isLoading } = useQuery({
     queryKey: ['stays', numDays],
@@ -14,8 +14,7 @@ export function useRecentStays() {
   });
 
   const confirmedStays = stays?.filter(
-    stay => stay.status === 'checked-in' || stay.status === 'check-out'
+    stay => stay.status === 'checked-in' || stay.status === 'checked-out'
   );
-
-  return { stays, confirmedStays, isLoading };
+  return { stays, confirmedStays, isLoading, numDays };
 }

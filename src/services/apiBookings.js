@@ -53,7 +53,7 @@ export async function getBooking(id) {
 }
 
 // Returns all BOOKINGS that were created after the given date.
-// The BOOKINGS starts with createdAt.
+// The BOOKINGS corresponds to createdAt column in DB.
 // NOTE: date needs to be ISO string.
 export async function getBookingsAfterDate(date) {
   const { data, error } = await supabase
@@ -70,7 +70,7 @@ export async function getBookingsAfterDate(date) {
 }
 
 // Returns all STAYS that are were created after the given date
-// The STAYS starts with startDate.
+// The STAYS corresponds to startDate column in DB.
 // NOTE: date needs to be ISO string.
 export async function getStaysAfterDate(date) {
   const { data, error } = await supabase

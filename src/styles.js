@@ -14,6 +14,7 @@ import ButtonText from './styles/ButtonText';
 import ButtonIcon from './styles/ButtonIcon';
 import ButtonGroup from './styles/ButtonGroup';
 import FullPageDiv from './styles/FullPageDiv';
+import DashboardDiv from './styles/DashboardDiv';
 
 export {
   Heading,
@@ -32,4 +33,5 @@ export {
   ButtonIcon,
   ButtonGroup,
   FullPageDiv,
+  DashboardDiv,
 };

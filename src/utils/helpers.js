@@ -17,9 +17,9 @@ export function formatDistanceFromNow(dateStr) {
     .replace('in', 'In');
 }
 
-// Supabase needs ISO date string. However, on every render when we create today (new Date),
-// 'minutes' and 'seconds' will be different. So we need to remove time from date in order
-// to compare with the date in supabase.
+// Supabase needs ISO date string. On every call we create today (new Date),
+// which will have different 'minutes' and 'seconds'. We remove time part
+// from today in order to compare with the dates in DB.
 export function getToday(options = {}) {
   const today = new Date();
   // This is necessary to compare with createdAt from Supabase, because
