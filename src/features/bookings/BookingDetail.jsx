@@ -8,6 +8,7 @@ import { useCheckout } from '../check-in-out/useCheckout';
 import { useDeleteBooking } from './useDeleteBooking';
 import Modal from '../../ui/Modal';
 import ConfirmDelete from '../../ui/ConfirmDelete';
+import Empty from '../../ui/Empty';
 
 const HeadingGroupDiv = styled.div`
   display: flex;
@@ -24,6 +25,8 @@ function BookingDetail() {
   const navigate = useNavigate();
 
   if (isLoading) return <S.Spinner />;
+
+  if (!booking) return <Empty resourceName="booking" />;
 
   const { id: bookingId, status } = booking;
 

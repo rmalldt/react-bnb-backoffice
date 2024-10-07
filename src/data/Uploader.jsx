@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { isFuture, isPast, isToday } from 'date-fns';
 import supabase from '../services/supabase';
-import Button from '../styles/Button';
+import * as S from '../styles';
 import { subtractDates } from '../utils/helpers';
 import { bookings } from './data-bookings';
 import { cabins } from './data-cabins';
 import { guests } from './data-guests';
+import styled from 'styled-components';
 
 // Postgresql array indexing starts with 1
 async function deleteGuests() {
@@ -100,6 +101,24 @@ async function createBookings() {
   if (error) console.log(error.message);
 }
 
+const UploaderDiv = styled.div`
+  margin-top: auto;
+  background-color: var(--color-indigo-100);
+  color: var(--color-grey-900);
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+const UploaderButton = styled(S.Button)`
+  width: 18rem;
+  height: 3.2rem;
+`;
+
 function Uploader() {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -126,27 +145,19 @@ function Uploader() {
   }
 
   return (
-    <div
-      style={{
-        marginTop: 'auto',
-        backgroundColor: 'var(--color-indigo-100)',
-        color: 'var(--color-grey-900)',
-        padding: '8px',
-        borderRadius: '5px',
-        textAlign: 'center',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '8px',
-      }}
-    >
+    <UploaderDiv>
       <h4>SAMPLE DATA</h4>
-      <Button $size="small" onClick={uploadAll} disabled={isLoading}>
+      <UploaderButton $size="small" onClick={uploadAll} disabled={isLoading}>
         Upload ALL
-      </Button>
-      <Button $size="small" onClick={uploadBookings} disabled={isLoading}>
+      </UploaderButton>
+      <UploaderButton
+        $size="small"
+        onClick={uploadBookings}
+        disabled={isLoading}
+      >
         Upload bookings ONLY
-      </Button>
-    </div>
+      </UploaderButton>
+    </UploaderDiv>
   );
 }
 
