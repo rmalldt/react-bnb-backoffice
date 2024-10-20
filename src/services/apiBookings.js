@@ -1,4 +1,4 @@
-import { RESULTS_PER_PAGE } from '../utils/AppConstants';
+import { RESULTS_PER_PAGE } from '../utils/appConstants';
 import { getToday } from '../utils/helpers';
 import supabase from './supabase';
 
