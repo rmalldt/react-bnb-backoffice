@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { RESULTS_PER_PAGE } from '../utils/AppConstants';
+import { RESULTS_PER_PAGE } from '../utils/appConstants';
 
 Pagination.propTypes = {
   count: PropTypes.number,
@@ -30,9 +30,9 @@ const PaginationButtonsDiv = styled.div`
 `;
 
 const PaginationButton = styled.button`
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.active ? ' var(--color-brand-600)' : 'var(--color-grey-50)'};
-  color: ${props => (props.active ? ' var(--color-brand-50)' : 'inherit')};
+  color: ${(props) => (props.active ? ' var(--color-brand-50)' : 'inherit')};
   border: none;
   border-radius: var(--border-radius-sm);
   font-weight: 500;
