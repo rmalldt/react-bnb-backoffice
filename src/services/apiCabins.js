@@ -1,6 +1,4 @@
 import supabase from './supabase';
-import { SUPABASE_URL } from './supabase';
-import { SUPABASE_STORAGE_URL } from './supabase';
 
 export async function getCabins() {
   const { data, error } = await supabase.from('cabins').select('*');
@@ -20,7 +18,9 @@ export async function deleteCabin(id) {
 }
 
 export async function createEditCabin(newCabin, id) {
-  const hasImagePath = newCabin.image?.startsWith?.(SUPABASE_URL);
+  const hasImagePath = newCabin.image?.startsWith?.(
+    import.meta.env.VITE_SUPABASE_URL
+  );
 
   // Create unique cabin name and if it contains slashes remove it to avoid creating
   // new folder in the database
@@ -31,7 +31,7 @@ export async function createEditCabin(newCabin, id) {
   // Create/edit cabin
   const imagePath = hasImagePath
     ? newCabin.image
-    : `${SUPABASE_STORAGE_URL}/cabin-images/${imageName}`;
+    : `${import.meta.env.VITE_SUPABASE_STORAGE_URL}/cabin-images/${imageName}`;
 
   let query = supabase.from('cabins');
 
