@@ -30,7 +30,7 @@ function LoginForm() {
           id="email"
           autoComplete="username"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           disabled={isLoading}
         />
       </FormRowVertical>
@@ -40,7 +40,7 @@ function LoginForm() {
           id="password"
           autoComplete="current-password"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           disabled={isLoading}
         />
       </FormRowVertical>
