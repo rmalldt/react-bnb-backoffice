@@ -39,7 +39,3 @@ npm run dev
 ### Deployment
 
 - **Vercel**: https://react-bnb-backoffice.vercel.app
-- **Login**:
-  - User: `tes@tes.com`
-  - Password: `helloThere123!`
-  - Once logged in, upload the sample data.
